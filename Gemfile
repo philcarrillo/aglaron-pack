@@ -13,6 +13,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+###########################################
+### without the following bundler show will list coffee-script (2.4.1)\
+### This appears to cause a problem with the stylesheet_link_tag and javascript_include_tag
+### added the following to correct
+gem 'coffee-script-source', '1.8.0'
+
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
