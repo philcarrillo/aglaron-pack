@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AglaronPack</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Aglaron Procurement & Packaging</title>
+  <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', media: 'all' %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +16,16 @@
 <body>
 
 <%= yield %>
+
+<hr>
+<footer>
+  <p>
+    <br><br>
+    &copy;2016 Aglaron Packaging<br>a business unit of International Data Enginering Inc.
+    <br><br>
+    <%= t=Time.new; t.strftime("%A, %d %b %Y %H:%M:%S %Z") %>
+  </p>
+</footer>
 
 </body>
 </html>
