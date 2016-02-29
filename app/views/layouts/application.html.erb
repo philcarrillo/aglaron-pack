@@ -6,23 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>Aglaron Procurement & Packaging</title>
+  <title><%= @co %></title>
   <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', media: 'all' %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'http://ajax.googleapis.com/agax/libs/jquery/1.12.0/jquery.min.js' %>
+  <%= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><%= @co %></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a hef="#">Packaging</a></li>
+        <li><a hef="#">Procurement</a></li>
+        <li><a hef="#">Services</a></li>
+        <li><a hef="#">Pricing</a></li>
+        <li><a hef="#">About <%= @cos %></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
 
 <%= yield %>
 
 <hr>
-<footer>
+<footer class="container-fluid">
   <p>
     <br><br>
-    &copy;2016 Aglaron Packaging<br>a business unit of International Data Enginering Inc.
-    <br><br>
+    &copy;2016 <%= @co %><br>a business unit of International Data Enginering Inc.
+    <br>
+
+    <br>
+    <blockquote>
+      If you haven't got time to understand ROR properly, you haven't
+      got any of my time.
+      <footer>Larry "LJ" Reid</footer>
+    </blockquote>
+    <br>
     <%= t=Time.new; t.strftime("%A, %d %b %Y %H:%M:%S %Z") %>
   </p>
 </footer>
