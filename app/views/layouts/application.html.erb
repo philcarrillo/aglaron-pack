@@ -22,14 +22,15 @@
         <a class="navbar-brand" href="/"><%= @co %></a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a hef="#">Packaging</a></li>
-        <li><a hef="#">Procurement</a></li>
-        <li><a hef="#">Services</a></li>
-        <li><a hef="#">Pricing</a></li>
-        <li><a hef="#">About <%= @cos %></a></li>
+        <li><%= link_to "Packaging", controller:"info", action: "packaging"  %></li>
+        <li><%= link_to "Procurement", controller:"info", action: "procurement"  %></li>
+        <li><%= link_to "Services", controller:"info", action: "services"  %></li>
+        <li><a href="#">Request Info</a> </li>
+        <li><%#= link_to "Request Info", controller:"req_contact", action: "contact_me"  %></li>
+        <li><%= link_to "About " + (@cos ? @cos : ""), controller:"info", action: "about"  %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Contact Us</a></li>
+        <li><a href="/info/contact"><span class="glyphicon glyphicon-user"></span>Contact Us</a></li>
       </ul>
     </div>
   </nav>
