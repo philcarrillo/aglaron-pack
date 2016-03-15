@@ -1,9 +1,48 @@
 <div class="jumbotron"></div>
-<div class="container" style="text-align: center;">
-  <%= image_tag "working.jpg", size: "400" %>
-</div>
 <div class="container">
-  <br><br><br>
-  <h3>Info#contact</h3>
-  <p>Find me in app/views/info/contact.html.erb</p>
+  <h2>Contact Us</h2>
+  <p>
+    Please feel free to contact us if you need information, help or pricing.
+  </P>
+  <p>
+    Send us an <a href="mailto:info@<%= Globals::company_url %>?Subject=Information%20Request">e-mail</a> at info@<%= Globals::company_url %>.
+  </p>
+
+  <p>
+    Give us a call at 613.862.7540
+  </p>
+
+  <p>
+    Send a Fax to 877.421.5561
+  </p>
+<%
+#  #  <div class="row" style="border: 1pt solid red">
+#  #  <div class="col-sm-4" >self</div>
+#    <div class="col-sm-1">&nbsp;</div>
+#    <div class="col-sm-7"><%= self % ></div>
+#  </div>
+#  <div class="row" style="border: 1pt solid red">
+#    <div class="col-sm-4" >phil</div>
+#    <div class="col-sm-1">&nbsp;</div>
+#    <div class="col-sm-7"><%= defined?(phil) ?  "yeah"  : "nope" % ></div>
+#  </div>
+#  <div class="row" style="border: 1pt solid red">
+#    <div class="col-sm-4" >PHIL</div>
+#    <div class="col-sm-1">&nbsp;</div>
+#    <div class="col-sm-7"><%= defined?(PHIL) ?  PHIL  : "nope" % ></div>
+#  </div>
+#  <div class="row" style="border: 1pt solid red">
+#    <div class="col-sm-4" >Globals::company_name_short</div>
+#
+#    <div class="col-sm-1">&nbsp;</div>
+#    <div class="col-sm-7"><%= defined?(Globals::company_name_short) ?  Globals::company_name_short  : "Not Defined" % ></div>
+#  </div>
+#  <%#= @silly % >
+#  <%# phil="Some stuff" % >
+#  <%#= phil % >
+#  <%# concat " ... some more stuff"% >
+#  <%
+#  #  objNew = Global1.new
+#  % >
+  %>
 </div>

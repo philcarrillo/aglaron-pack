@@ -3,6 +3,11 @@ class InfoController < ApplicationController
   end
 
   def contact
+    @silly = '<u>The Evironment</u><br>'
+    ENV.each do |theItem|
+  	   @silly += "<br>Object: #{theItem} Of Type #{theItem.class}"
+     end
+     @silly = @silly.html_safe
   end
 
   def history

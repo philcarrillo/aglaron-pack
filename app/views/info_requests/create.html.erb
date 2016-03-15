@@ -1,0 +1,40 @@
+<div class="jumbotron"></div>
+<div class="container">
+  <% if @whatjusthappened == "OK" #-------------------------------------------%>
+    <h3>Thanks, we're on it!</h3>
+    <div class="row">
+      <div class="col-sm-6" >
+        <%= image_tag "2536.jpg", size: "300" %>
+      </div>
+      <div class="col-sm-6">
+        Thank you for your request for further information.
+        <br><br>
+        Your request has been passed onto one of our Client Managers
+        who will be in contact with you shortly to make sure all of your
+        procurement and packaging needs are met.
+      </div>
+    </div>
+  <% else #-----------------------------------------------------------------%>
+    <h3>Ooops, we've had a problem</h3>
+    <div class="row">
+      <div class="col-sm-6" >
+        <%= image_tag "overworked.png", size: "300" %>
+      </div>
+      <div class="col-sm-6">
+        We were unable to process your request
+        <br><br>
+        Our technical staff has been informed and we will be endeavouring to
+        solve this problem. If you have persistent problems with this please call
+        us at 613.862.7540 and report your problem
+      </div>
+    </div>
+  <% end #------------------------------------------------------------------%>
+
+  <hr>
+  <%= @what %>
+
+  <hr>
+  What just happened: <%= @whatjusthappened %>
+  <br>
+
+</div>

@@ -1,0 +1,92 @@
+<div class="jumbotron"></div>
+<div class="container">
+  <h2>Request More Info</h2>
+  <p>
+    Thank you for your interest in <%= Globals::company_name %> and our
+    products and services.  Since we provide customized solutions for our
+    clients please fill out the following form outlining your needs and requirements.
+    We will promptly respond to make sure that you have all the information and pricing that
+    you need.
+  </p>
+  <hr>
+  <%= form_for :info_requests, url: info_requests_path do |f| %>
+  <div class="row">
+    <div class="col-sm-12" ><h4>Tell us about yourself</h4></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" >First Name</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_field :name_first, size: 60 %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" >Last Name</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_field :name_last, size: 60 %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" >Title</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_field :title, size: 30 %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" >Company</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_field :company, size: 50 %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12" ><h4>Tell us how to contact you</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" ><%= f.label :email %></div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_field :email, size: 100 %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" ><%= f.label :phone %></div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.telephone_field :phone %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right" >Please contact me via</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.select :contact_method, ["email","Phone - Anytime","Phone - 9AM to Noon, Eastern","Phone - Noon to 5PM, Eastern"] %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12" ><h4>Tell us how we can help you</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right " >I need help with</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.select :help_required, ["-- select --","Standard Box Pricing","Custom Boxes","Packaging Design","Shipping Supplies","Other"] %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-2 text-right " ><%= f.label :comment %></div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-7"><%= f.text_area :comment %></div>
+  </div>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+</div>
