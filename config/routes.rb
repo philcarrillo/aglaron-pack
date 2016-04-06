@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reports/contact_reports'
+
   get 'info/contact'
 
   get 'info/history'

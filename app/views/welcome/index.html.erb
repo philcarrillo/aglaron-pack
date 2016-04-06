@@ -1,6 +1,6 @@
   <div class="jumbotron">
     <div class="container">
-      <h2><%= @co %></h2>
+      <h2><%= Globals::company_name %></h2>
       <p class="regular">
         You provide the product development and build expertise, we help you
         get the product safely out the door and into your customer's hands
@@ -22,7 +22,7 @@
                 <%= image_tag("boxes_m.jpg", size: '185') %>
                 <div class="carousel-caption">
                   <span  class="c-caption">
-                    <%= @cos %> can supply custom boxes to meet your shipping needs
+                    <%= Globals::company_name_short %> can supply custom boxes to meet your shipping needs
                   </span>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 <%= image_tag("bubble_m.jpg", width: '185') %>
                 <div class="carousel-caption">
                   <span  class="c-caption">
-                    <%= @cos %> can help you design proper packaging to protect your valuable shipment
+                    <%= Globals::company_name_short %> can help you design proper packaging to protect your valuable shipment
                   </span>
                 </div>
               </div>
@@ -38,7 +38,7 @@
                 <%= image_tag("strong_m.jpg", width: '250') %>
                 <div class="carousel-caption">
                   <span  class="c-caption">
-                    <%= @cos %> can help you select the correct material for your shipping containers
+                    <%= Globals::company_name_short %> can help you select the correct material for your shipping containers
                   </span>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                 <%= image_tag("supplies_m.jpg", width: '185') %>
                 <div class="carousel-caption">
                   <span  class="c-caption">
-                    <%= @cos %> is your source for all of your shipping supplies
+                    <%= Globals::company_name_short %> is your source for all of your shipping supplies
                   </span>
                 </div>
               </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="col-sm-5">
           <p class="regular">
-            Often overlooked, you can off-load to <%= @co %> all of the problems
+            Often overlooked, you can off-load to <%= Globals::company_name %> all of the problems
             of designing and procuring the necessary packaging materials so that
             your product reaches your customer's site safely.
           </p>
@@ -79,7 +79,7 @@
         <div class="col-md-4">
           <h2>Packaging</h2>
           <p class="regular">
-            <%= @cos %> specializes in providing custom or small volumne packaging.
+            <%= Globals::company_name_short %> specializes in providing custom or small volumne packaging.
             Let us know what your sizing problems are and we will provide the
             correct package and protection for your product.
           </p>
@@ -90,14 +90,16 @@
           <p class="regular">
             Need help in designing a shipping package?  Don't have the time to
             spend selecting and qualifying vendors?  Don't know where to find that
-            key part?  <%= @cos %> can help.
+            key part?  <%= Globals::company_name_short %> can help.
           </p>
-          <p><a class="btn btn-default" href="#" role="button">More details &raquo;</a></p>
+          <p>
+            <a class="btn btn-default" href=<%= url_for controller:"info", action: "procurement"  %> role="button">More details &raquo;</a>
+          </p>
         </div>
         <div class="col-md-4">
           <h2>Our History</h2>
           <p class="regular">
-            <%= @cos %> started out as <mark>Stewart Packaging</mark> founded by
+            <%= Globals::company_name_short %> started out as <mark>Stewart Packaging</mark> founded by
               Craig Stewart to provide packaging and supplies.  We continue to
               expand our services and capabilities.
           </p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315023635) do
+ActiveRecord::Schema.define(version: 20160405134807) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "company",        limit: 50
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20160315023635) do
     t.string   "title",          limit: 30
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "pings", force: :cascade do |t|
+    t.text     "msg",        limit: 100
+    t.text     "msg_type",   limit: 20
+    t.integer  "mod_count",              default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

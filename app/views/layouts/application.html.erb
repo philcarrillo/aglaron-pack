@@ -23,11 +23,12 @@
         <a class="navbar-brand" href="/"><%= Globals::company_name %></a>
       </div>
       <ul class="nav navbar-nav">
-        <li><%= link_to "Packaging", controller:"info", action: "packaging"  %></li>
+        <li><%= link_to "Packaging", controller:"info", action: "packaging" %></li>
         <li><%= link_to "Procurement", controller:"info", action: "procurement"  %></li>
         <li><%= link_to "Services", controller:"info", action: "services"  %></li>
         <li><%= link_to "Request More Info", controller:"info_requests", action: "new"  %></li>
         <li><%#= link_to "Request Info", controller:"req_contact", action: "contact_me"  %></li>
+        <li><%= link_to "Contacts", controller:"reports", action: "contact_reports"  %></li>
         <li><%= link_to "About #{Globals::company_name_short}", controller:"info", action: "about"  %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

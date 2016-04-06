@@ -1,0 +1,27 @@
+<div class="jumbotron"></div>
+<div class="container">
+
+  <h1>Reports#contact_reports</h1>
+  <p>Find me in app/views/reports/contact_reports.html.erb</p>
+  <p>There are <%= @rowcount %> rows in the info_requests table</p>
+
+  <table>
+  <tr>
+    <th style="border: 1pt solid blue; padding: 5pt;">id</th>
+    <th style="border: 1pt solid blue; padding: 5pt;">Name</th>
+    <th style="border: 1pt solid blue; padding: 5pt;">Company</th>
+    <th style="border: 1pt solid blue; padding: 5pt;">Contact Using</th>
+    <th style="border: 1pt solid blue; padding: 5pt;">Email Address</th>
+  </tr>
+
+  <% @rows.each do |arow| %>
+    <tr>
+      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.id %></td>
+      <td style="border: 1pt solid blue; padding: 5pt;"><%= "#{arow.name_last}, #{arow.name_first}" %></td>
+      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.company %></td>
+      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.contact_method %></td>
+      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.email %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
