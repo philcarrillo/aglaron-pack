@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405134807) do
+ActiveRecord::Schema.define(version: 20160406222440) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "company",        limit: 50
     t.string   "contact_method", limit: 25
     t.string   "help_required",  limit: 25
-    t.string   "email",          limit: 255
+    t.string   "email_address",  limit: 255
     t.string   "name_first",     limit: 60
     t.string   "name_last",      limit: 60
     t.string   "phone",          limit: 20
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160405134807) do
     t.integer  "contact_id"
     t.string   "contact_method", limit: 25
     t.string   "help_required",  limit: 25
-    t.string   "email",          limit: 255
+    t.string   "email_address",  limit: 255
     t.string   "name_first",     limit: 60
     t.string   "name_last",      limit: 60
     t.string   "phone",          limit: 20

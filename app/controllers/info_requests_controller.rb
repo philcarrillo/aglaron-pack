@@ -9,7 +9,7 @@ class InfoRequestsController < ApplicationController
       t=Time.now
 
       @info_requests = InfoRequest.first
-      @info_requests.email = t.strftime("%H:%M:%S:") + "phil@carrillo.ca"
+      @info_requests.email_address = t.strftime("%H:%M:%S:") + "phil@carrillo.ca"
     if @info_requests.valid?
       if @info_requests.save # :validate => false
         @saved_it = "Yeah, saved it"
@@ -74,7 +74,7 @@ class InfoRequestsController < ApplicationController
 
   private
     def chkparas
-      params.require(:info_requests).permit(:comment, :company, :contact_id, :contact_method, :help_required, :email, :name_first, :name_last, :phone, :title )
+      params.require(:info_requests).permit(:comment, :company, :contact_id, :contact_method, :help_required, :email_address, :name_first, :name_last, :phone, :title )
     #  @info_request_paras = params.require(:info_requests).permit(:comment, :company, :contact_id, :contact_method, :help_required, :email, :name_first, :name_last, :phone, :title )
     #  @contact_paras = params.require(:info_requests).permit(:comment, :company, :contact_id, :contact_method, :help_required, :email, :name_first, :name_last, :phone, :title )
     end
