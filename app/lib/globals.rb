@@ -1,11 +1,11 @@
   class Globals
     def self.company_name
-      "Aglaron Procurement & Packaging"
+      "Assist Packaging & Procurement"
     end
     def self.company_name_short
-      "Aglaron"
+      "Assist Packaging"
     end
     def self.company_url
-      "algaron.com"
+      "assistpackaging.com"
     end
   end

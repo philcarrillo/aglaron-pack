@@ -10,251 +10,373 @@ class ContactTest < ActiveSupport::TestCase
 
   end
 
-  test "1. InfoRequest Does Not Contain Matching Fields" do
+  test "01 InfoRequest Does Not Contain Matching Fields" do
     # Intialize data
+    # The contact that we are expecting not to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new()
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # --- no changes in this case
+
 
     # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
-
-    assert_nil match_contact
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
+    # OK, Now run the test
+    chk_test contact,info_request, :ret_nil
   end
 
-  test "2. InfoRequest Matches phone, contains no other data" do
+  test "02 InfoRequest Matches phone, contains no other data" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone)
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # --- no changes in this case
 
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
-
+    # OK, Now run the test
+    chk_test contact,info_request, :match
   end
 
-  test "3. InfoRequest Matches phone, contains only title" do
+  test "03 InfoRequest Matches phone, contains only title" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone, title: "chg #{contact.title}")
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # title should be changed and reflect title from info_request
+    contact.title = info_request.title
 
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal info_request.title, match_contact.title
-
+    # OK, Now run the test
+    chk_test contact,info_request, :match
   end
 
-  test "4. InfoRequest Matches phone, contains only name_last" do
+  test "04 InfoRequest Matches phone, contains only name_last" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone, name_last: "chg #{contact.name_last}")
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # name_last should be changed and reflect name_last from info_request
+    contact.name_last = info_request.name_last
 
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal info_request.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
-
-
+    # OK, Now run the test
+    chk_test contact,info_request, :match
   end
 
-  test "5. InfoRequest Matches phone, contains only name_first" do
+  test "05 InfoRequest Matches phone, contains only name_first" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone, name_first: "chg #{contact.name_first}")
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
-
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal info_request.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # name_first should be changed and reflect name_first from info_request
+    contact.name_first = info_request.name_first
+    # OK, Now run the test
+    chk_test contact,info_request, :match
 
   end
 
-  test "6. InfoRequest Matches phone, contains only contact_method" do
+  test "06 InfoRequest Matches phone, contains only contact_method" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone, contact_method: "chg #{contact.contact_method}")
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # contact_method should be changed and reflect contact_method from info_request
+    contact.contact_method = info_request.contact_method
 
-    assert_not_nil match_contact
+    # OK, Now run the test
+    chk_test contact,info_request, :match
 
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal info_request.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
   end
 
-#---------------------------------------------------------------------------
-  test "7. InfoRequest Matches phone, contains only company" do
+  test "07 InfoRequest Matches phone, contains only company" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
-
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(phone: contact.phone, company: "chg #{contact.company}")
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # company should be changed and reflect company from info_request
+    contact.company = info_request.company
 
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal info_request.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
-
+    # OK, Now run the test
+    chk_test contact,info_request, :match
 
   end
 
-  test "8. InfoRequest Does NOT Match phone, contains only phone" do
+  test "08 InfoRequest Does NOT Match phone, contains only phone" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
 
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(phone: "xxx.xxx.xxxx")  # xxx.xxx.xxxx should not match any phone
+                              # Should I test is this is not nil?
 
-    info_request = InfoRequest.new(phone: "chg #{contact.phone}", company: "chg #{contact.company}")
-    num_init_recs = Contact.all.size
+    # Set contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # expect contact should be the same as info_request
+    contact = info_request
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
-
-    assert_not_nil match_contact
-
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
-
-    assert_equal num_init_recs + 1, Contact.all.size, "Num rows in contacts should increase by 1"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal info_request.email_address, match_contact.email_address
-    assert_equal info_request.phone, match_contact.phone
-    assert_equal info_request.company, match_contact.company
-    assert_equal info_request.contact_method, match_contact.contact_method
-    assert_equal info_request.name_first, match_contact.name_first
-    assert_equal info_request.name_last, match_contact.name_last
-    assert_equal info_request.title, match_contact.title
+    # OK, Now run the test
+    chk_test contact,info_request, :new
 
   end
 
-  #---------------------------------------------------------------------------
-  test "9. InfoRequest Matches email, contains other data" do
+  test "09 InfoRequest Matches email, contains no other data" do
     # Intialize data
-    contact=contacts(:test2)
-    assert_not_nil contact
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
 
+    # The info_request - this represents the test case data
     info_request = InfoRequest.new(email_address: contact.email_address)
-    num_init_recs = Contact.all.size
+                              # Should I test is this is not nil?
 
-    # Run Test
-    match_contact = Contact.match_contact_from_info_request(info_request)
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # contact should not change, as there is no new data in info_request
 
-    assert_not_nil match_contact
 
-    assert_instance_of( Contact, match_contact, "Results not an active contact model" )
+    # OK, Now run the test
+    chk_test contact,info_request, :match
 
-    assert_equal num_init_recs, Contact.all.size, "Num rows in contacts should remain the same"
-
-    assert_not_nil match_contact.id, "match id should not be null"
-    assert_equal contact.email_address, match_contact.email_address
-    assert_equal contact.phone, match_contact.phone
-    assert_equal contact.company, match_contact.company
-    assert_equal contact.contact_method, match_contact.contact_method
-    assert_equal contact.name_first, match_contact.name_first
-    assert_equal contact.name_last, match_contact.name_last
-    assert_equal contact.title, match_contact.title
   end
 
+  test "10 InfoRequest Matches email_address, contains only title" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, title: "chg #{contact.title}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # title should be changed and reflect title from info_request
+    contact.title = info_request.title
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+  end
+
+  test "11 InfoRequest Matches email_address, contains only name_last" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, name_last: "chg #{contact.name_last}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # name_last should be changed and reflect name_last from info_request
+    contact.name_last = info_request.name_last
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+  end
+
+  test "12 InfoRequest Matches email_address, contains only name_first" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, name_first: "chg #{contact.name_first}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # name_first should be changed and reflect name_first from info_request
+    contact.name_first = info_request.name_first
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+
+  end
+
+  test "13 InfoRequest Matches email_address, contains only contact_method" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, contact_method: "chg #{contact.contact_method}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # contact_method should be changed and reflect contact_method from info_request
+    contact.contact_method = info_request.contact_method
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+
+  end
+
+  test "14 InfoRequest Matches email_address, contains only company" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, company: "chg #{contact.company}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # company should be changed and reflect company from info_request
+    contact.company = info_request.company
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+
+  end
+
+  test "15 InfoRequest Matches email_address, contains only (non match) phone" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: contact.email_address, phone: "chg #{contact.phone}")
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # company should be changed and reflect company from info_request
+    contact.phone = info_request.phone
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+
+  end
+
+  test "16 InfoRequest Matches phone, contains only (non match) email_address" do
+    # Intialize data
+    # The contact that we are expecting to match
+    contact = contacts(:test2)
+    assert_not_nil contact    # Is this a meaningful assertion?
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(email_address: "chg #{contact.email_address}", phone: contact.phone)
+                              # Should I test is this is not nil?
+
+    # Now modify contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # company should be changed and reflect company from info_request
+    contact.email_address = info_request.email_address
+
+    # OK, Now run the test
+    chk_test contact,info_request, :match
+
+  end
+
+
+  test "17 InfoRequest Does NOT Match phone or email" do
+    # Intialize data
+
+    # The info_request - this represents the test case data
+    info_request = InfoRequest.new(phone: "xxx.xxx.xxxx", email_address: "xxxx@xxx.com")  # x's' should not match any phone
+                              # Should I test is this is not nil?
+
+    # Set contact to reflect what we expect our Contact instance to
+    # be returned from Contact::match_contact_from_info_request
+    # expect contact should be the same as info_request
+    contact = info_request
+
+    # OK, Now run the test
+    chk_test contact,info_request, :new
+
+  end
+
+#===================================================================================================
+  ## This method runs a test of the Contact class method match_contact_from_info_request
+  ## An instance of InfoRequest is supplied with the test data
+  ## An instance of Contact is supplied with the expected data
+  ## The expected_result variable can contain :new, :match (Default)  and any other symbol
+  ## means that an error is expected and no Contact Instance would be created
+  def chk_test (correct_contact,info_request, expected_result = :match)
+    # Get the number of records in contacts before we run our test
+    num_existing_recs = Contact.all.size
+
+    resulting_contact = Contact.match_contact_from_info_request(info_request)
+
+    if expected_result == :new
+      assert_not_nil resulting_contact, "[#{expected_result}]: Expecting an instance of Contact "
+      assert_instance_of( Contact, resulting_contact, "[#{expected_result}]: Results not an Contact class" )
+      assert_equal num_existing_recs + 1, Contact.all.size, "[#{expected_result}]: Should create new row in contacts"
+    elsif expected_result == :match
+      assert_not_nil resulting_contact, "[#{expected_result}]: Expecting an instance of Contact"
+      assert_instance_of( Contact, resulting_contact, "[#{expected_result}]: Results not an Contact class" )
+      assert_equal num_existing_recs, Contact.all.size, "[#{expected_result}]: Should be no new rows in contacts"
+    else
+      assert_nil resulting_contact, "[#{expected_result}]: Should not return an instance of Contact"
+      assert_equal num_existing_recs, Contact.all.size, "[#{expected_result}]: Should be no new rows in contacts"
+    end
+
+
+
+    ## -- Test the Results -----------------------------------------------------
+    if expected_result == :new || expected_result == :match
+      assert_not_nil resulting_contact.id, "match id should not be null"
+      assert_equal correct_contact.email_address, resulting_contact.email_address, "unexpected email_address"
+      assert_equal correct_contact.phone, resulting_contact.phone, "unexpected phone"
+      assert_equal correct_contact.company, resulting_contact.company, "unexpected company"
+      assert_equal correct_contact.contact_method, resulting_contact.contact_method, "unexpected contact_method"
+      assert_equal correct_contact.name_first, resulting_contact.name_first, "unexpected name_first"
+      assert_equal correct_contact.name_last, resulting_contact.name_last, "unexpected name_last"
+      assert_equal correct_contact.title, resulting_contact.title, "unexpected title"
+    end
+
+  end
 
 end

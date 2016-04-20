@@ -3,39 +3,27 @@ class InfoRequestsController < ApplicationController
   end
 
   def create
-#    @what = params.inspect
-#    chkparas
-#    @info_requests = InfoRequest.new(chkparas)
-      t=Time.now
+    @whatjusthappened = "OK"
 
-      @info_requests = InfoRequest.first
-      @info_requests.email_address = t.strftime("%H:%M:%S:") + "phil@carrillo.ca"
-    if @info_requests.valid?
-      if @info_requests.save # :validate => false
-        @saved_it = "Yeah, saved it"
-      else
-        @saved_it = "Nope, did NOT do it"
+    @info_request = InfoRequest.new(chkparas)
+    @contact = Contact.match_contact_from_info_request(@info_request)
+    # Did we have enough data to create a contact?
+    if @contact.blank?
+      @whatjusthappened = "Not Enough Data"
+    end
+
+    if @whatjusthappened == "OK"
+      @info_request.contact_id = @contact.id
+    end
+
+    if @whatjusthappened == "OK" && @info_request.valid?
+      if ! @info_request.save # :validate => false
+        @whatjusthappened = "**Error: #{@info_request.errors.messages}"
       end
-################################################################################
-#      @contact_paras = ActionController::Parameters.new({
-#         contact: { company: @info_requests.company,
-#                    contact_method: @info_requests.contact_method,
-#                    email: @info_requests.email,
-#                    age:  22,
-#                    role: 'admin'
-#        }
-#                    })
-#
-#
-
-
-    #  @phil = Contact.get_contact_from_paras(chkparas)
-      @whatjusthappened = "OK"
-    else
-      @whatjusthappened = "**Error: #{@info_requests.errors.messages}"
     end
 
     #------------------------------------------------------------------------------
+=begin
     @pingstuff = "<br>Pingstuff"
     @ping = Ping.new
 
@@ -70,6 +58,7 @@ class InfoRequestsController < ApplicationController
     @thecount = "The Present table count: #{InfoRequest.all.size}"
     @thepingcount = "The Present table count: #{Ping.all.size}"
     @last5pings = Ping.order(updated_at: :desc).first(5)
+=end
   end
 
   private

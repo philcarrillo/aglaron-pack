@@ -14,6 +14,20 @@
         procurement and packaging needs are met.
       </div>
     </div>
+    <% elsif @whatjusthappened == "Not Enough Data"  #-----------------------------------------------------------------%>
+      <h3>Ooops, we've had a problem</h3>
+      <div class="row">
+        <div class="col-sm-6" >
+          <%= image_tag "overworked.png", size: "300" %>
+        </div>
+        <div class="col-sm-6">
+          We were unable to process your request as you must provide either
+          a phone number or a valid email address for us to use to contact you.
+          <br><br>
+          Please resubmit your request, or if you prefer, call us directly at
+          613.862.7540 and we'll get you the information you need.
+        </div>
+      </div>
   <% else #-----------------------------------------------------------------%>
     <h3>Ooops, we've had a problem</h3>
     <div class="row">
@@ -26,45 +40,13 @@
         Our technical staff has been informed and we will be endeavouring to
         solve this problem. If you have persistent problems with this please call
         us at 613.862.7540 and report your problem
+        <br><br>
+        Error: <%= @whatjusthappened %>
       </div>
     </div>
   <% end #------------------------------------------------------------------%>
 
-  <hr>
-  <br>@what: <%= @what %>
-  <br>@phil: <%= @phil %>
-  <br>@info_request_paras: <%= @info_request_paras %>
-  <br>@contact_paras: <%= @contact_paras %>
-  <br>What just happened: <%= @whatjusthappened %>
-  <br>@info_requests.id: <%= @info_requests.id %>
-  <br>@saved_it: <%= @saved_it %>
-  <br>@info_requests.errors.full_messages: <%= @info_requests.errors.full_messages %>
-  <br>info_requests count: <%= @thecount %>
-  <br>pings count: <%= @thepingcount %>
-  <br><%= @pingstuff.html_safe %>
-  <hr>
-  Last 5 Pings
-  <table>
-  <tr>
-    <th style="border: 1pt solid blue; padding: 5pt;">id</th>
-    <th style="border: 1pt solid blue; padding: 5pt;">Mod Cnt</th>
-    <th style="border: 1pt solid blue; padding: 5pt;">Type</th>
-    <th style="border: 1pt solid blue; padding: 5pt;">Message</th>
-    <th style="border: 1pt solid blue; padding: 5pt;">Created</th>
-    <th style="border: 1pt solid blue; padding: 5pt;">Updated</th>
-  </tr>
 
-  <% @last5pings.each do |arow| %>
-    <tr>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.id %></td>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.mod_count %></td>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.msg_type %></td>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.msg %></td>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.created_at %></td>
-      <td style="border: 1pt solid blue; padding: 5pt;"><%= arow.updated_at %></td>
-    </tr>
-  <% end %>
-</table>
 
 
 </div>

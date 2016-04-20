@@ -1,4 +1,4 @@
-puts "Test Program"
+puts "Test Program t.rb"
 
 =begin -----------------------------------------
 def incr(a)
@@ -50,8 +50,27 @@ end
 ----------------------------------------------------------------
 =end
 
-anArray = [1,"Silly",5.6]
+a = :on
+puts a.class
 
-ENV.each do |theItem|
-	puts "Object: #{theItem} Of Type #{theItem.class}"
+if a == :one
+	puts "TP01 #{a}"
+	puts "a is :one"
+elsif a == :two
+
+	puts "TP02 #{a}"
+	puts "a is :two"
+else
+	puts "TP03 #{a}"
+	puts "we don't know what a is"
+
 end
+
+
+a = 7
+b = 0
+c = 0
+
+a != b || c = 77
+
+ puts "Yep #{c}"
