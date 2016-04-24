@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'reports/contact_reports'
+
+  get 'info/contact'
+
+  get 'info/history'
+
+  get 'info/services'
+
+  get 'info/procurement'
+
+  get 'info/packaging'
+
+  get 'info/about'
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,6 +29,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resources :info_requests
 
   # Example resource route with options:
   #   resources :products do

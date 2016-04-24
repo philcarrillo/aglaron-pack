@@ -1,2 +1,111 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+  <div class="jumbotron">
+    <div class="container">
+      <h2><%= Globals::company_name %></h2>
+      <p class="regular">
+        You provide the product development and build expertise, we help you
+        get the product safely out the door and into your customer's hands
+      </p>
+      <div class="row">
+        <div class="col-sm-7">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 90%;">
+            <!-- Inidicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <%= image_tag("boxes_m.jpg", size: '185') %>
+                <div class="carousel-caption">
+                  <span  class="c-caption">
+                    <%= Globals::company_name_short %> can supply custom boxes to meet your shipping needs
+                  </span>
+                </div>
+              </div>
+              <div class="item">
+                <%= image_tag("bubble_m.jpg", width: '185') %>
+                <div class="carousel-caption">
+                  <span  class="c-caption">
+                    <%= Globals::company_name_short %> can help you design proper packaging to protect your valuable shipment
+                  </span>
+                </div>
+              </div>
+              <div class="item">
+                <%= image_tag("strong_m.jpg", width: '250') %>
+                <div class="carousel-caption">
+                  <span  class="c-caption">
+                    <%= Globals::company_name_short %> can help you select the correct material for your shipping containers
+                  </span>
+                </div>
+              </div>
+              <div class="item">
+                <%= image_tag("supplies_m.jpg", width: '185') %>
+                <div class="carousel-caption">
+                  <span  class="c-caption">
+                    <%= Globals::company_name_short %> is your source for all of your shipping supplies
+                  </span>
+                </div>
+              </div>
+            </div>
+              <!-- Left and Right Controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <p class="regular">
+            Often overlooked, you can off-load to <%= Globals::company_name %> all of the problems
+            of designing and procuring the necessary packaging materials so that
+            your product reaches your customer's site safely.
+          </p>
+          <button type="button" class="btn-primary btn-lg">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Packaging</h2>
+          <p class="regular">
+            <%= Globals::company_name_short %> specializes in providing custom or small volumne packaging.
+            Let us know what your sizing problems are and we will provide the
+            correct package and protection for your product.
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">More details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Procurement and Other Services</h2>
+          <p class="regular">
+            Need help in designing a shipping package?  Don't have the time to
+            spend selecting and qualifying vendors?  Don't know where to find that
+            key part?  <%= Globals::company_name_short %> can help.
+          </p>
+          <p>
+            <a class="btn btn-default" href=<%= url_for controller:"info", action: "procurement"  %> role="button">More details &raquo;</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h2>Our History</h2>
+          <p class="regular">
+            <%= Globals::company_name_short %> started out as <mark>Stewart Packaging</mark> founded by
+              Craig Stewart to provide packaging and supplies.  We continue to
+              expand our services and capabilities.
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">More details &raquo;</a></p>
+        </div>
+      </div>
+      <br><hr><br>
+
+  </div>

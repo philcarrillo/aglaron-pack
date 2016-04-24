@@ -1,0 +1,60 @@
+<div class="jumbotron"></div>
+<div class="container">
+
+  <h1>Reports#contact_reports</h1>
+  <p>Find me in app/views/reports/contact_reports.html.erb</p>
+  <p>There are <%= @rowcount %> rows in the info_requests table</p>
+
+<table>
+  <tr>
+    <th style="border: 1pt solid blue; padding: 5pt;">Contact</th>
+    <th style="border: 1pt solid blue; padding: 5pt;">Info Request</th>
+  </tr>
+<%
+=begin
+<tr>
+  <th style="border: 1pt solid blue; padding: 5pt;">id</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Name</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Title</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Email Address</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Phone</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Company</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Contact Using</th>
+
+  <th style="border: 1pt solid blue; padding: 5pt;">id</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Name</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Title</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Email Address</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Phone</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Company</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Contact Using</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Help With</th>
+  <th style="border: 1pt solid blue; padding: 5pt;">Comment</th>
+</tr>
+=end
+%>
+  <% last_id = -1 %>
+  <% @report.each do |arow| %>
+    <%
+    if last_id != arow.contact_id  &&  arow.contact_id != nil
+      contact_cell = ReportsController.form_contact(the_id: arow.contact_id, the_time: arow.c_updated_at, first: arow.c_first, last:arow.c_last, title: arow.c_title, company:  arow.c_company, phone: arow.c_phone, contact_method: arow.c_contact_method, email: arow.c_email)
+    elsif last_id != arow.contact_id  &&  arow.contact_id == nil
+      contact_cell = "No Contact"
+    else
+      contact_cell = "&nbsp;"
+    end if
+
+    request_cell = ReportsController.form_contact(the_id: arow.id, the_time: arow.i_updated_at, first: arow.i_first, last:arow.i_last, title: arow.i_title, company:  arow.i_company, phone: arow.i_phone, contact_method: arow.i_contact_method, email: arow.i_email)
+    request_cell +=  "<br>&nbsp;<b>Help Required:</b> #{arow.i_help_required}"  if arow.i_help_required != "-- select --"
+    request_cell +=  "<br>&nbsp;<b>Comments:</b> #{arow.i_comment}"  if ! arow.i_comment.blank?
+
+    last_id = arow.contact_id
+     %>
+ <tr>
+   <td style="border: 1pt solid blue; padding: 5pt;"><%= contact_cell.html_safe %></td>
+   <td style="border: 1pt solid blue; padding: 5pt;"><%= request_cell.html_safe %></td>
+ </tr>
+
+<% end %>
+</table>
+</div>
